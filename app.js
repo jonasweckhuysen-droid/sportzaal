@@ -1,159 +1,227 @@
-import { db } from "./firebase-config.js";
+import {db}
+from "./firebase-config.js";
+
 
 import {
+
 collection,
 addDoc,
 getDocs,
 deleteDoc,
-doc,
-updateDoc
+doc
+
 }
-from 
+
+from
 "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 
-let naam = localStorage.getItem("naam");
+
+let naam =
+localStorage.getItem("naam");
+
 
 if(!naam){
 
-naam = prompt("Geef je naam:");
+naam =
+prompt(
+"Naam:"
+);
 
-localStorage.setItem("naam",naam);
+localStorage.setItem(
+"naam",
+naam
+);
 
 }
 
 
-const lijst =
-document.getElementById("reservaties");
 
 
-async function laadReservaties(){
-
-lijst.innerHTML="";
+let calendar;
 
 
-const snapshot =
+
+async function laadAgenda(){
+
+
+
+let events=[];
+
+
+let data =
 await getDocs(
 collection(db,"reservaties")
 );
 
 
 
-snapshot.forEach((item)=>{
+data.forEach(item=>{
 
 
-const data=item.data();
+let r=item.data();
 
 
-const kaart =
-document.createElement("div");
+events.push({
+
+id:item.id,
 
 
-kaart.className="reservatie";
+title:
+
+"🔥 "
++r.naam,
 
 
-kaart.innerHTML=`
+start:
 
-<div class="kaart-header">
-
-<h3>
-🔥 ${data.datum}
-</h3>
-
-<span>
-🕒 ${data.uur}
-</span>
-
-</div>
+r.datum+"T"+r.uur,
 
 
-<p>
-👤 ${data.naam}
-</p>
+backgroundColor:
 
-
-${
-data.naam === naam ?
-
-`
-<button onclick="bewerk('${item.id}')">
-✏️
-</button>
-
-<button onclick="verwijder('${item.id}')">
-🗑️
-</button>
-`
-
-:
-
-""
-
-}
-
-
-`;
-
-
-lijst.appendChild(kaart);
+"#c1121f"
 
 
 });
 
 
-}
-
-
-
-window.verwijder = async(id)=>{
-
-
-if(confirm("Reservatie verwijderen?")){
-
-
-await deleteDoc(
-doc(db,"reservaties",id)
-);
-
-
-laadReservaties();
-
-
-}
-
-
-}
+});
 
 
 
 
-window.bewerk = async(id)=>{
+calendar = new FullCalendar.Calendar(
 
+document.getElementById("calendar"),
 
-let nieuwUur =
-prompt(
-"Nieuw uur:"
-);
-
-
-await updateDoc(
-
-doc(db,"reservaties",id),
 
 {
 
-uur: nieuwUur
+
+initialView:"dayGridMonth",
+
+
+locale:"nl",
+
+
+selectable:true,
+
+
+dateClick(info){
+
+
+openPopup(
+info.dateStr,
+"18:00"
+);
+
+
+},
+
+
+
+events:events
+
+
 
 }
 
 );
 
 
-laadReservaties();
+
+calendar.render();
 
 
 }
 
 
 
-laadReservaties();
+
+
+
+function openPopup(
+datum,
+uur
+){
+
+
+document.getElementById("modal")
+.style.display="flex";
+
+
+document.getElementById("datum")
+.value=datum;
+
+
+document.getElementById("uur")
+.value=uur;
+
+
+
+document.getElementById(
+"gekozenMoment"
+)
+.innerHTML=
+
+datum+" om "+uur;
+
+
+}
+
+
+
+
+
+window.sluitPopup=function(){
+
+
+document.getElementById("modal")
+.style.display="none";
+
+
+}
+
+
+
+
+
+document
+.getElementById("save")
+.onclick=async()=>{
+
+
+await addDoc(
+
+collection(db,"reservaties"),
+
+{
+
+
+naam,
+
+
+datum:
+document.getElementById("datum").value,
+
+
+uur:
+document.getElementById("uur").value
+
+
+}
+
+
+);
+
+
+location.reload();
+
+
+}
+
+
+
+
+laadAgenda();
