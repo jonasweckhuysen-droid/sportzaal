@@ -12,61 +12,95 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#c1121f">
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css' rel='stylesheet'>
+
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
+
 <header>
 
 <h1>
-<i class="fas fa-dumbbell"></i>
-FireFit Reservaties
-<i class="fas fa-fire"></i>
+🔥 FireFit
 </h1>
 
-<button id="reserveBtn">
-<i class="fas fa-calendar-plus"></i>
-Reserveer
-</button>
+<p>
+Sportzaal Reservaties
+</p>
 
 </header>
 
-<div class="agenda">
+
+
+<main>
+
+
+<div id="calendar"></div>
+
+
+</main>
+
+
+
+<!-- POPUP -->
+
+<div id="modal" class="modal">
+
+
+<div class="popup">
+
 
 <h2>
-<i class="fas fa-calendar"></i>
-Agenda
+💪 Nieuwe reservatie
 </h2>
 
-<div id="reservaties"></div>
 
-</div>
+<p id="gekozenMoment"></p>
 
-<div class="modal" id="modal">
 
-<div class="modal-content">
-
-<h2>
-<i class="fas fa-fire-extinguisher"></i>
-Nieuwe Reservatie
-</h2>
-
-<input
-type="date"
+<input 
+type="hidden"
 id="datum">
 
-<input
-type="time"
+
+<input 
+type="hidden"
 id="uur">
 
-<button id="opslaan">
-Opslaan
+
+
+<button id="save">
+
+🔥 Reserveer
+
 </button>
 
-</div>
+
+
+<button 
+onclick="sluitPopup()">
+
+Annuleren
+
+</button>
+
 
 </div>
+
+
+</div>
+
+
+
+
+
+
 
 <script type="module" src="app.js"></script>
 <script>
