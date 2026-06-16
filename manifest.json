@@ -1,7 +1,7 @@
 {
   "name": "FireFit Reservaties",
   "short_name": "FireFit",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#1b1b1b",
   "theme_color": "#c1121f",
