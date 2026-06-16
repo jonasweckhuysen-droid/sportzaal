@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FireFit Reservaties</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>
+<i class="fas fa-dumbbell"></i>
+FireFit Reservaties
+<i class="fas fa-fire"></i>
+</h1>
+
+<button id="reserveBtn">
+<i class="fas fa-calendar-plus"></i>
+Reserveer
+</button>
+
+</header>
+
+<div class="agenda">
+
+<h2>
+<i class="fas fa-calendar"></i>
+Agenda
+</h2>
+
+<div id="reservaties"></div>
+
+</div>
+
+<div class="modal" id="modal">
+
+<div class="modal-content">
+
+<h2>
+<i class="fas fa-fire-extinguisher"></i>
+Nieuwe Reservatie
+</h2>
+
+<input
+type="date"
+id="datum">
+
+<input
+type="time"
+id="uur">
+
+<button id="opslaan">
+Opslaan
+</button>
+
+</div>
+
+</div>
+
+<script type="module" src="app.js"></script>
+
+</body>
+</html>
