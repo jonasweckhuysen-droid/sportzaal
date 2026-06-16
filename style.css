@@ -1,0 +1,43 @@
+body{
+margin:0;
+font-family:Segoe UI;
+background:#111;
+color:white;
+}
+
+header{
+background:#b30000;
+padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+h1{
+margin:0;
+}
+
+button{
+background:#ff4500;
+border:none;
+padding:12px 20px;
+color:white;
+border-radius:10px;
+cursor:pointer;
+}
+
+.agenda{
+padding:20px;
+}
+
+.reservatie{
+background:#222;
+padding:15px;
+margin-bottom:10px;
+border-left:5px solid orange;
+border-radius:10px;
+}
+
+.vol{
+border-left:5px solid red;
+}
