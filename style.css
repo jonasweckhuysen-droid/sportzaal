@@ -1,13 +1,15 @@
 body{
 
 margin:0;
-font-family:'Segoe UI',sans-serif;
+
+font-family:
+'Segoe UI';
 
 background:
 linear-gradient(
 135deg,
-#111,
-#2b0000
+#0d0d0d,
+#420000
 );
 
 color:white;
@@ -15,17 +17,14 @@ color:white;
 }
 
 
-header{
 
-padding:25px;
+header{
 
 background:#c1121f;
 
-display:flex;
+padding:25px;
 
-justify-content:space-between;
-
-align-items:center;
+text-align:center;
 
 box-shadow:
 0 5px 20px black;
@@ -34,29 +33,7 @@ box-shadow:
 
 
 
-button{
-
-background:#ff3b30;
-
-border:none;
-
-color:white;
-
-padding:10px 14px;
-
-border-radius:12px;
-
-font-size:18px;
-
-margin:5px;
-
-cursor:pointer;
-
-}
-
-
-
-.agenda{
+#calendar{
 
 padding:20px;
 
@@ -64,67 +41,116 @@ padding:20px;
 
 
 
-.reservatie{
-
+.fc{
 
 background:
-rgba(255,255,255,0.08);
-
-
-backdrop-filter:blur(10px);
-
-
-border-radius:20px;
-
+rgba(255,255,255,.08);
 
 padding:20px;
 
-
-margin-bottom:15px;
-
-
-box-shadow:
-0 10px 25px rgba(0,0,0,.4);
-
-
-border-left:
-6px solid #ff3b30;
-
-
-animation:
-fade .3s;
-
+border-radius:25px;
 
 }
 
 
-.kaart-header{
+
+.fc-button{
+
+background:#c1121f!important;
+
+border:none!important;
+
+}
 
 
-display:flex;
 
-justify-content:space-between;
+.modal{
+
+display:none;
+
+position:fixed;
+
+inset:0;
+
+background:
+rgba(0,0,0,.7);
 
 align-items:center;
 
+justify-content:center;
+
+z-index:10;
+
 }
 
 
 
-@keyframes fade{
+.popup{
+
+
+background:#222;
+
+padding:30px;
+
+border-radius:25px;
+
+width:320px;
+
+text-align:center;
+
+
+box-shadow:
+0 15px 50px black;
+
+
+animation:
+popup .3s;
+
+
+}
+
+
+
+button{
+
+
+padding:14px;
+
+border:none;
+
+border-radius:15px;
+
+background:#c1121f;
+
+color:white;
+
+margin:10px;
+
+font-size:16px;
+
+
+}
+
+
+
+@keyframes popup{
 
 
 from{
 
+transform:scale(.8);
+
 opacity:0;
-transform:translateY(10px);
 
 }
 
 to{
 
+transform:scale(1);
+
 opacity:1;
 
 }
+
 
 }
