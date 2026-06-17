@@ -22,16 +22,24 @@ import {
 // CONFIGURATIE
 // ══════════════════════════════════════════════════════════════════════════════
 
-/** Tijdslots die beschikbaar zijn per dag */
+/** Tijdslots die beschikbaar zijn per dag (blokken van 1 uur) */
 const TIJDSLOTS = [
-  { label: "06:00 – 08:00", uur: "06:00" },
-  { label: "08:00 – 10:00", uur: "08:00" },
-  { label: "10:00 – 12:00", uur: "10:00" },
-  { label: "12:00 – 14:00", uur: "12:00" },
-  { label: "14:00 – 16:00", uur: "14:00" },
-  { label: "16:00 – 18:00", uur: "16:00" },
-  { label: "18:00 – 20:00", uur: "18:00" },
-  { label: "20:00 – 22:00", uur: "20:00" },
+  { label: "06:00 – 07:00", uur: "06:00" },
+  { label: "07:00 – 08:00", uur: "07:00" },
+  { label: "08:00 – 09:00", uur: "08:00" },
+  { label: "09:00 – 10:00", uur: "09:00" },
+  { label: "10:00 – 11:00", uur: "10:00" },
+  { label: "11:00 – 12:00", uur: "11:00" },
+  { label: "12:00 – 13:00", uur: "12:00" },
+  { label: "13:00 – 14:00", uur: "13:00" },
+  { label: "14:00 – 15:00", uur: "14:00" },
+  { label: "15:00 – 16:00", uur: "15:00" },
+  { label: "16:00 – 17:00", uur: "16:00" },
+  { label: "17:00 – 18:00", uur: "17:00" },
+  { label: "18:00 – 19:00", uur: "18:00" },
+  { label: "19:00 – 20:00", uur: "19:00" },
+  { label: "20:00 – 21:00", uur: "20:00" },
+  { label: "21:00 – 22:00", uur: "21:00" },
 ];
 
 const MAX_PER_SLOT = 3;
@@ -285,6 +293,18 @@ function renderSlots(datum) {
       badgeHTML = `<span class="slot-badge badge-vrij">${vrij} plek${vrij === 1 ? "" : "ken"} vrij</span>`;
     }
 
+    // ── Deelnemers ───────────────────────────────────────────────────────────
+    let deelnemersHTML = "";
+    if (bezet.length > 0) {
+      const chips = bezet.map((r) => {
+        const isZelf = r.naam === naam;
+        return `<span class="deelnemer-chip${isZelf ? " chip-eigen" : ""}">
+          <i class="fa-solid fa-user-helmet-safety"></i> ${r.naam}
+        </span>`;
+      }).join("");
+      deelnemersHTML = `<div class="slot-deelnemers">${chips}</div>`;
+    }
+
     // ── Actieknop ────────────────────────────────────────────────────────────
     let actieHTML;
     if (isEigen) {
@@ -305,6 +325,7 @@ function renderSlots(datum) {
       <div class="slot-info">
         <div class="slot-tijd">${slot.label}</div>
         <div class="slot-status">${badgeHTML}</div>
+        ${deelnemersHTML}
       </div>
       <div class="slot-vlammen">${vlammenHTML}</div>
       <div class="slot-actie">${actieHTML}</div>
