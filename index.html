@@ -1,113 +1,101 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FireFit — Sportzaal Reservaties</title>
 
-<title>FireFit Reservaties</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
 
-<link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#c1121f">
-<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css' rel='stylesheet'>
-
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#c1121f">
 </head>
-
 <body>
 
+  <!-- ══ HEADER ══════════════════════════════════════════════════════════════ -->
+  <header class="app-header">
+    <div class="header-brand">
+      <div class="logo-mark">
+        <i class="fa-solid fa-dumbbell"></i>
+      </div>
+      <div class="header-text">
+        <h1>FireFit</h1>
+        <span class="header-sub">Sportzaal Reservaties</span>
+      </div>
+    </div>
+    <div class="header-user">
+      <div class="user-chip">
+        <i class="fa-solid fa-user-helmet-safety"></i>
+        <span id="userNaam">—</span>
+      </div>
+      <button class="btn-icon" id="btnWijzigNaam" title="Naam wijzigen">
+        <i class="fa-solid fa-pen"></i>
+      </button>
+    </div>
+  </header>
 
-<header>
+  <!-- ══ MAIN ════════════════════════════════════════════════════════════════ -->
+  <main class="app-main">
+    <div class="legenda-bar">
+      <div class="legenda-item">
+        <span class="legenda-dot dot-eigen"></span>Mijn reservatie
+      </div>
+      <div class="legenda-item">
+        <span class="legenda-dot dot-bezet"></span>Bezet door anderen
+      </div>
+      <div class="legenda-item">
+        <i class="fa-solid fa-fire" style="color:#c1121f;font-size:0.7rem;"></i>
+        <i class="fa-solid fa-fire" style="color:#2a2a3a;font-size:0.7rem;"></i>
+        <i class="fa-solid fa-fire" style="color:#2a2a3a;font-size:0.7rem;"></i>
+        &nbsp;= 1/3 bezet
+      </div>
+    </div>
+    <div class="calendar-wrapper">
+      <div id="calendar"></div>
+    </div>
+  </main>
 
-<h1>
-🔥 FireFit
-</h1>
+  <!-- ══ MODAL: Tijdslots ════════════════════════════════════════════════════ -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalDatumLabel">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card">
 
-<p>
-Sportzaal Reservaties
-</p>
+      <div class="modal-header">
+        <div>
+          <div class="modal-eyebrow">
+            <i class="fa-solid fa-calendar-check"></i>&nbsp; Tijdslot kiezen
+          </div>
+          <h2 class="modal-datum" id="modalDatumLabel">—</h2>
+        </div>
+        <button class="btn-icon modal-close" id="btnSluit" aria-label="Sluiten">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
 
-</header>
+      <div class="slots-grid" id="slotsGrid">
+        <!-- Dynamisch ingevuld via app.js -->
+      </div>
 
+      <div class="modal-footer">
+        <button class="btn-ghost" id="btnSluiten">Sluiten</button>
+      </div>
 
+    </div>
+  </div>
 
-<main>
+  <!-- ══ TOAST ═══════════════════════════════════════════════════════════════ -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-
-<div id="calendar"></div>
-
-
-</main>
-
-
-
-<!-- POPUP -->
-
-<div id="modal" class="modal">
-
-
-<div class="popup">
-
-
-<h2>
-💪 Nieuwe reservatie
-</h2>
-
-
-<p id="gekozenMoment"></p>
-
-
-<input 
-type="hidden"
-id="datum">
-
-
-<input 
-type="hidden"
-id="uur">
-
-
-
-<button id="save">
-
-🔥 Reserveer
-
-</button>
-
-
-
-<button 
-onclick="sluitPopup()">
-
-Annuleren
-
-</button>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-<script type="module" src="app.js"></script>
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
-}
-</script>
-
+  <script type="module" src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
 </body>
 </html>
