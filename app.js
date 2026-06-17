@@ -9,6 +9,7 @@
  *  - Kalender toont bezetting per slot
  */
 
+
 import { db } from "./firebase-config.js";
 import {
   collection,
