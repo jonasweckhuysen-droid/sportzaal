@@ -558,6 +558,36 @@ body {
   border-color: var(--brand);
 }
 
+/* ─── Deelnemers ─────────────────────────────────────────────────────────── */
+.slot-deelnemers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.deelnemer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.67rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: var(--surface-3);
+  border: 1px solid var(--border-2);
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  white-space: nowrap;
+}
+
+.deelnemer-chip i { font-size: 0.6rem; }
+
+.deelnemer-chip.chip-eigen {
+  color: var(--brand-hover);
+  background: var(--brand-dim);
+  border-color: rgba(193, 18, 31, 0.25);
+}
+
 /* ─── Modal footer ───────────────────────────────────────────────────────── */
 .modal-footer {
   padding: 0.875rem 1.25rem;
